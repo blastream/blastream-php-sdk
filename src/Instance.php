@@ -13,7 +13,7 @@ class Instance
     use Document;
     use Collaborators;
     
-    private $_request_url = 'https://api.man.invaders.stream';
+    private $_request_url = 'https://api.v2.invaders.stream';
     
     private $_app_url = 'app.v2.blastream.com';
 
