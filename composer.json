@@ -1,0 +1,21 @@
+{
+    "name": "blastream/php-sdk",
+    "type": "library",
+    "description": "consume php rest api with php sdk",
+    "keywords": ["blastream","php","sdk","videoconference", "api", "rest", "livestreaming", "whitelabel"],
+    "homepage": "https://www.blastream.com",
+    "license": "MIT",
+  
+    "autoload": {
+        "psr-4": {"Blastream\\": "src/"}
+    },
+
+    "authors": [
+        {
+            "name": "blastream team",
+            "email": "support@blastream.com",
+            "homepage": "https://blastream.com",
+            "role": "Developer"
+        }
+    ]
+}
