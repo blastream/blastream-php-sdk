@@ -12,6 +12,7 @@ Create a channel with admin account and show iframe insterface
 
 ```
 composer require blastream/php-sdk
+```
 
 ```php
 <?php
