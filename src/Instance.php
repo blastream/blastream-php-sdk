@@ -28,6 +28,8 @@ class Instance
 
     //constructeur
     public function __construct($_public_key, $_private_key, $custom_domain = '') {
+        if(defined('DEV_REQUEST_URL'))
+            $this->setRequestUrl(DEV_REQUEST_URL);
         $this->_public_key = $_public_key;
         $this->_private_key = $_private_key;
         if ($custom_domain != '')
