@@ -81,13 +81,10 @@ $channel->updateSettings([
 ]);
 ?>
 ```
-###ini_set('display_errors', 1);
+#### Update custom design of a channel
 ```php
 <?php
-ini_set('display_startup_errors', 1);
-# Update custom design of a channel
-require '../vendor/autoload.php';
-require '../config.php';
+require './vendor/autoload.php';
 
 use Blastream\Instance as Blastream;
 
