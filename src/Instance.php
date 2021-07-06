@@ -9,15 +9,12 @@ namespace Blastream;
 class Instance
 {
     use Entreprise;
-    use Channel;
-    use Document;
-    use Collaborators;
     
-    private $_request_url = 'https://api.v2.invaders.stream';
+    private $_request_url = 'https://api.v2.blastream.com';
     
     private $_app_url = 'app.v2.blastream.com';
 
-    private $_publick_key;
+    private $_public_key;
 
     private $_private_key;
 
@@ -27,11 +24,11 @@ class Instance
 
     private $_embed = 1;
     
-    private $_whitelabel_url = false;
+    private $_whitelabel_url = '';
 
     //constructeur
-    public function __construct($_publick_key, $_private_key, $custom_domain = '') {
-        $this->_publick_key = $_publick_key;
+    public function __construct($_public_key, $_private_key, $custom_domain = '') {
+        $this->_public_key = $_public_key;
         $this->_private_key = $_private_key;
         if ($custom_domain != '')
         {
@@ -40,10 +37,10 @@ class Instance
     }
     
     public function getPublickKey() {
-        return $this->_publick_key;
+        return $this->_public_key;
     }
     
-    public function setUrlRequest($url) {
+    public function setRequestUrl($url) {
         $this->_request_url = $url;
     }
     
@@ -79,7 +76,7 @@ class Instance
             $headers[] = 'Content-Type: application/json';
         
         if (strpos($url, '/entreprise') === 0) {
-            $headers[] = 'X-Api-Public: ' . $this->_publick_key;
+            $headers[] = 'X-Api-Public: ' . $this->_public_key;
             $headers[] = 'X-Api-Private: ' . $this->_private_key;
         }
         else {
@@ -128,7 +125,7 @@ class Instance
     }
     
     public function thowException($error) {
-        throw new Exception($error);
+        throw new \Exception($error);
     }
     
     
@@ -165,7 +162,7 @@ class Instance
     public function getUrl() {
         $url = $this->_channel_url;
         if ($this->_whitelabel_url) $url = str_replace($this->_app_url, $this->_whitelabel_url, $url);
-        return $url . '?token=' . $this->_token . '&api=' . $this->_publick_key;
+        return $url . '?token=' . $this->_token . '&api=' . $this->_public_key;
     }
     
 }

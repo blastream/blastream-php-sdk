@@ -1,8 +1,17 @@
 <?php
 namespace Blastream;
 
+
 trait Entreprise
 {
+    
+    public function initChannel($result) {
+        $channel = new Channel($this->_public_key, $this->_public_key, $this->_whitelabel_url);
+        $channel->setRequestUrl($this->_request_url);
+        $channel->setSlug($this->_slug);
+        $channel->setResponseToken($result);
+        return $channel;
+    }
     
     public function setSlug($slug) {
         $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $slug)));
@@ -16,9 +25,8 @@ trait Entreprise
         $this->_slug = $slug;
         
         $result = $this->post('/entreprise/channel/' . $this->_slug, $params);
-        $this->setResponseToken($result);
         
-        return $this;
+        return $this->initChannel($result);
     }
 
     public function createOrGetParticipant($slug, $id, $params = []) {
@@ -37,8 +45,7 @@ trait Entreprise
             'body' => $params
         ]);
         
-        $this->setResponseToken($result);
-        return $this;
+        return $this->initChannel($result);
     }
     
     private function setResponseToken($res) {

@@ -1,8 +1,15 @@
 <?php
 namespace Blastream;
 
-trait Channel
-{
+class Channel extends Instance {
+    
+    use Document;
+    use Collaborators;
+    
+    public function setSlug($slug) {
+        $this->_slug = $slug;
+    }
+    
     public function setAccessRule($privacy, $params = []) {
         return $this->put('/channel/rule', [
             'body' => [
