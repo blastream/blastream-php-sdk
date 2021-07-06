@@ -1,14 +1,10 @@
 <?php
-#require('Entreprise.php');
-#require('Channel.php');
-#require('Document.php');
-#require('Collaborators.php');
-
 namespace Blastream;
 
 class Instance
 {
-    use Entreprise;
+    use Space;
+    use Plans;
     
     private $_request_url = 'https://api.v2.blastream.com';
     
@@ -25,6 +21,8 @@ class Instance
     private $_embed = 1;
     
     private $_whitelabel_url = '';
+    
+    protected $_is_channel = false;
 
     //constructeur
     public function __construct($_public_key, $_private_key, $custom_domain = '') {
@@ -71,13 +69,13 @@ class Instance
         if (isset($params['file'])) {
             $params['json'] = false;
             $headers[] = 'Content-Type: multipart/form-data';
-            curl_setopt($ch, CURLOPT_POSTFIELDS, ['file' => new CURLFile( $params['file'], mime_content_type($params['file']), $params['name'])]);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, ['file' => new \CURLFile( $params['file'], mime_content_type($params['file']), $params['name'])]);
         }
         
         if (!isset($params['json']) || $params['json'] != false) 
             $headers[] = 'Content-Type: application/json';
         
-        if (strpos($url, '/entreprise') === 0) {
+        if (!$this->_is_channel) {
             $headers[] = 'X-Api-Public: ' . $this->_public_key;
             $headers[] = 'X-Api-Private: ' . $this->_private_key;
         }

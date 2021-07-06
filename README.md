@@ -11,10 +11,8 @@ composer require blastream/php-sdk
 
 ### Examples
 
-
-#### Create a channel and show iframe with administrator account
-
-```php
+#### Create a channel and show iframe with administrator account
+```php
 <?php
 require './vendor/autoload.php';
 
@@ -26,10 +24,8 @@ $iframe = $channel->getIframe(800, 600);
 echo $iframe;
 ?>
 ```
-
-#### Create a collaborator
-
-```php
+#### Create a collaborator
+```php
 <?php
 require './vendor/autoload.php';
 
@@ -42,10 +38,8 @@ $iframe = $colaborator->getIframe(800, 600);
 echo $iframe;
 ?>    
 ```
-
-#### Create a participant
-
-```php
+#### Create a participant
+```php
 <?php
 require './vendor/autoload.php';
 
@@ -61,10 +55,8 @@ $iframe = $channel->getIframe(800, 600, [
 echo $iframe;
 ?>    
 ```
-
-#### Update plan of a channel
-
-```php
+#### Update plan of a channel
+```php
 <?php
 require './vendor/autoload.php';
 
@@ -75,10 +67,8 @@ $channel = $blastream->createOrGetChannel('my-channel');
 $channel->updateSubscription('pro2', 'hourly');
 ?>
 ```
-
-#### Update settings of a channel
-
-```php
+#### Update settings of a channel
+```php
 <?php
 require './vendor/autoload.php';
 
@@ -91,19 +81,20 @@ $channel->updateSettings([
 ]);
 ?>
 ```
-
-#### Update custom design of a channel
-
-```php
+###ini_set('display_errors', 1);
+```php
 <?php
-require './vendor/autoload.php';
+ini_set('display_startup_errors', 1);
+# Update custom design of a channel
+require '../vendor/autoload.php';
+require '../config.php';
 
 use Blastream\Instance as Blastream;
 
 $blastream = new Blastream(PUBLIC_KEY, PRIVATE_KEY); 
 $channel = $blastream->createOrGetChannel('my-channel');
 $upload = $channel->uploadPic(IMAGE_FILE_NAME, IMAGE_FILE_ABSOLUTE_PATH);
-$blastream->setCustom([
+$channel->setCustom([
     "colors"=>  [
       "#ff0000",
       "#ff0000",

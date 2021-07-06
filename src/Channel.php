@@ -6,6 +6,8 @@ class Channel extends Instance {
     use Document;
     use Collaborators;
     
+    protected $_is_channel = true;
+    
     public function setSlug($slug) {
         $this->_slug = $slug;
     }

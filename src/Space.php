@@ -2,7 +2,7 @@
 namespace Blastream;
 
 
-trait Entreprise
+trait Space
 {
     
     public function initChannel($result) {
@@ -24,7 +24,7 @@ trait Entreprise
     public function createOrGetChannel($slug, $params = []) {
         $this->_slug = $slug;
         
-        $result = $this->post('/entreprise/channel/' . $this->_slug, $params);
+        $result = $this->post('/space/channel/' . $this->_slug, $params);
         
         return $this->initChannel($result);
     }
@@ -41,7 +41,7 @@ trait Entreprise
             $params['nickname'] = $id;
         }
         
-        $result = $this->post('/entreprise/channel/' . $this->_slug . '/participant', [
+        $result = $this->post('/space/channel/' . $this->_slug . '/participant', [
             'body' => $params
         ]);
         
@@ -57,20 +57,16 @@ trait Entreprise
         return $this->_token;
     }
     
-    public function getPlans() {
-        return $this->get('/entreprise/plans');
-    }
-    
     public function revokeToken($token) {
-        return $this->post('/entreprise/revoke-token/' . $token);
+        return $this->post('/space/revoke-token/' . $token);
     }
     
     public function revokeTokens($slug) {
-        return $this->post('/entreprise/revoke-tokens/' . $slug);
+        return $this->post('/space/revoke-tokens/' . $slug);
     }
     
     public function registerHook($url) {
-        return $this->post('/entreprise/hook', [
+        return $this->post('/space/hook', [
             'body' => [
                 'url' => $url
             ]
