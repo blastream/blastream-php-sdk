@@ -20,7 +20,9 @@ use Blastream\Instance as Blastream;
 
 $blastream = new Blastream(PUBLIC_KEY, PRIVATE_KEY); 
 $channel = $blastream->createOrGetChannel('my-channel');
-$iframe = $channel->getIframe(800, 600);
+$iframe = $channel->getIframe(800, 600, [
+    'username' => 'admin username'
+]);
 echo $iframe;
 ?>
 ```
@@ -33,8 +35,10 @@ use Blastream\Instance as Blastream;
 
 $blastream = new Blastream(PUBLIC_KEY, PRIVATE_KEY); 
 $channel = $blastream->createOrGetChannel('my-channel');
-$colaborator = $channel->createOrGetCollaborator('my-collaborator', 'moderator');
-$iframe = $colaborator->getIframe(800, 600);
+$colaborator = $channel->createOrGetCollaborator('Collaborator Username', 'moderator'); //The collaborator username is unique for a channel
+$iframe = $colaborator->getIframe(800, 600, [
+    'username' => 'Username updated' //you can override nickname with username iframe parameters
+]);
 echo $iframe;
 ?>    
 ```
@@ -50,7 +54,8 @@ $channel = $blastream->createOrGetParticipant('my-channel', 'my-id', [
     'allow_cam' => 1
 ]);
 $iframe = $channel->getIframe(800, 600, [
-    'username' => 'toto', 'auto_join' => 1
+    'username' => 'my username', 
+    'auto_join' => 1
 ]);
 echo $iframe;
 ?>    
@@ -80,6 +85,20 @@ $channel->updateSettings([
     'autojoin' => 1
 ]);
 ?>
+```
+#### Update a collaborator
+```php
+<?php
+require './vendor/autoload.php';
+
+use Blastream\Instance as Blastream;
+
+$blastream = new Blastream(PUBLIC_KEY, PRIVATE_KEY); 
+$channel = $blastream->createOrGetChannel('my-channel');
+$colaborator = $channel->createOrGetCollaborator('Collaborator Username', 'moderator'); 
+$colaborator->update('New username', 'animator');
+
+?>    
 ```
 #### Update custom design of a channel
 ```php

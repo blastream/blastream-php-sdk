@@ -14,15 +14,19 @@ trait Space
     }
     
     public function setSlug($slug) {
+        if(preg_match('/[^a-z\-0-9]/i', $slug)) {
+            $this->thowException('this is not a valid slug ! only alphanumeric and "-" character is accepted');
+        }
+        
         $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $slug)));
         if (strlen($slug) > 64 || strlen($slug) < 2) {
-            $this.thowException('slug is too long or too short');
+            $this->thowException('slug is too long or too short');
         }
         $this->_slug = $slug;
     }
     
     public function createOrGetChannel($slug, $params = []) {
-        $this->_slug = $slug;
+        $this->setSlug($slug);
         
         $result = $this->post('/space/channel/' . $this->_slug, $params);
         

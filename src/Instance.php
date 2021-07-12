@@ -36,6 +36,10 @@ class Instance
         }
     }
     
+    public function slugify($value) {
+        return strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $value)));
+    }
+    
     public function getPublickKey() {
         return $this->_public_key;
     }
@@ -151,6 +155,8 @@ class Instance
         $params = array_merge($params, [
             'embed' => 1
         ]);
+        
+        
         
         $url .= '&' . http_build_query($params);
 

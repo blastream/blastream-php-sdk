@@ -23,7 +23,7 @@ class Collaborator {
     
     public function update($displayname, $status, $params = []) {
         $params['displayname'] = $displayname;
-        $params['email'] = $params['displayname'].'@mail.com';
+        $params['email'] = $this->_data['email'];
         $params['status'] = $status;
         $res = $this->_instance->post('/channel/collaborator/' . $this->_data['token'], [
             'body' => $params
@@ -50,7 +50,7 @@ trait Collaborators
     
     public function createCollaborator($displayname, $status, $params = []) {
         $params['displayname'] = $displayname;
-        $params['email'] = $params['displayname'].'@mail.com';
+        $params['email'] = $this->slugify($displayname).'-'.time().'@mail.com';
         $params['status'] = $status;
         return new Collaborator($this->put('/channel/collaborator', [
             'body' => $params

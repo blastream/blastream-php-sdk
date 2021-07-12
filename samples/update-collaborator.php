@@ -1,5 +1,5 @@
 <?php
-# Create a channel and show iframe with administrator account
+# Update a collaborator
 require '../vendor/autoload.php';
 require '../config.php';
 
@@ -7,8 +7,7 @@ use Blastream\Instance as Blastream;
 
 $blastream = new Blastream(PUBLIC_KEY, PRIVATE_KEY); 
 $channel = $blastream->createOrGetChannel('my-channel');
-$iframe = $channel->getIframe(800, 600, [
-    'username' => 'admin username'
-]);
-echo $iframe;
-?>
+$colaborator = $channel->createOrGetCollaborator('Collaborator Username', 'moderator'); 
+$colaborator->update('New username', 'animator');
+
+?>    
