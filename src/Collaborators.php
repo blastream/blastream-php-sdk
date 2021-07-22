@@ -21,6 +21,10 @@ class Collaborator {
         return $this->_data['status'];
     }
     
+    public function getData() {
+        return $this->_data;
+    }
+    
     public function update($displayname, $status, $params = []) {
         $params['displayname'] = $displayname;
         $params['email'] = $this->_data['email'];

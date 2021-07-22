@@ -5,6 +5,7 @@ class Channel extends Instance {
     
     use Document;
     use Collaborators;
+    use Scenes;
     
     protected $_is_channel = true;
     
