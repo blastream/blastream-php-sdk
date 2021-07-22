@@ -109,7 +109,7 @@ use Blastream\Instance as Blastream;
 
 $blastream = new Blastream(PUBLIC_KEY, PRIVATE_KEY); 
 $channel = $blastream->createOrGetChannel('my-channel');
-$upload = $channel->uploadPic(IMAGE_FILE_NAME, IMAGE_FILE_ABSOLUTE_PATH);
+$upload = $channel->uploadPic(IMAGE_FILE_ABSOLUTE_PATH);
 $channel->setCustom([
     "colors"=>  [
       "#ff0000",
