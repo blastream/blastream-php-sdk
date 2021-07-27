@@ -22,7 +22,6 @@ class Scene {
     }
     
     public function isDefault() {
-        print_r($this->_data);
         return $this->_data['default_scene'];
     }
     
