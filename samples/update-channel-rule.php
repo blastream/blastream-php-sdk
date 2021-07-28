@@ -1,5 +1,5 @@
 <?php
-# Update settings of a channel
+# Update access rule of a channel
 require '../vendor/autoload.php';
 require '../config.php';
 

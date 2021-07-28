@@ -72,7 +72,7 @@ $channel = $blastream->createOrGetChannel('my-channel');
 $channel->updateSubscription('pro2', 'hourly');
 ?>
 ```
-#### Update settings of a channel
+#### Update access rule of a channel
 ```php
 <?php
 require './vendor/autoload.php';
