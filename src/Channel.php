@@ -14,6 +14,10 @@ class Channel extends Instance {
     }
     
     public function setAccessRule($privacy, $params = []) {
+        if($privacy == 'PRIVATE')
+            $privacy = 2;
+        if($privacy == 'PUBLIC')
+            $privacy = 0;
         return $this->put('/channel/rule', [
             'body' => [
                 'privacy' => $privacy,
