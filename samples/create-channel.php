@@ -6,9 +6,15 @@ require '../config.php';
 use Blastream\Instance as Blastream;
 
 $blastream = new Blastream(PUBLIC_KEY, PRIVATE_KEY); 
-$channel = $blastream->createOrGetChannel('my-channel');
+$blastream->setTimeout(6000);
+try {
+$channel = $blastream->createOrGetChannel('my-channelaz');
 $iframe = $channel->getIframe(800, 600, [
     'username' => 'admin username'
 ]);
 echo $iframe;
+}
+catch (Exception $e) {
+    echo 'Exception reçue : ',  $e->getMessage(), "\n";
+}
 ?>

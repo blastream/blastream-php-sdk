@@ -6,7 +6,7 @@ require '../config.php';
 use Blastream\Instance as Blastream;
 
 $blastream = new Blastream(PUBLIC_KEY, PRIVATE_KEY); 
-$channel = $blastream->createOrGetParticipant('my-channel', 'my-id', [
+$channel = $blastream->createOrGetParticipant('my-channelaz', 'my-id33zz', [
     'allow_cam' => 1
 ]);
 $iframe = $channel->getIframe(800, 600, [

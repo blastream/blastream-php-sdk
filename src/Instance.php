@@ -23,6 +23,8 @@ class Instance
     private $_whitelabel_url = '';
     
     protected $_is_channel = false;
+    
+    protected $_timeout = 3000;
 
     //constructeur
     public function __construct($_public_key, $_private_key, $custom_domain = '') {
@@ -46,6 +48,10 @@ class Instance
     
     public function setRequestUrl($url) {
         $this->_request_url = $url;
+    }
+    
+    public function setTimeout($timeout) {
+        $this->_timeout = $timeout;
     }
     
     protected function curl($url, $params = []) {
@@ -89,6 +95,7 @@ class Instance
             $headers[] = 'X-Auth-Token: ' . $this->_token;
         }
         
+        curl_setopt($ch, CURLOPT_TIMEOUT_MS, $this->_timeout);
         
         
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
