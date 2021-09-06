@@ -28,6 +28,7 @@ class Instance
     
     protected $_version = 2;
 
+
     //constructeur
     public function __construct($_public_key, $_private_key, $custom_domain = '') {
         if(defined('DEV_REQUEST_URL'))
@@ -68,6 +69,7 @@ class Instance
         return $this->_version == 1 ? true : false;
     }
     
+
     protected function curl($url, $params = []) {
 
         $ch = curl_init();
