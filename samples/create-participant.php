@@ -6,6 +6,7 @@ require '../config.php';
 use Blastream\Instance as Blastream;
 
 $blastream = new Blastream(PUBLIC_KEY, PRIVATE_KEY); 
+$blastream->setVersion(1);
 $channel = $blastream->createOrGetParticipant('my-channelaz', 'my-id33zz', [
     'allow_cam' => 1
 ]);

@@ -28,7 +28,19 @@ trait Space
     public function createOrGetChannel($slug, $params = []) {
         $this->setSlug($slug);
         
-        $result = $this->post('/space/channel/' . $this->_slug, $params);
+        if($this->isV1()) {
+            $params = [
+                'body' => [
+                    'email' => $slug .'-whitelabel@blastream.com',
+                    'nickname' => $slug,
+                    'api_user_id' => $slug,
+                    'status' => 'broadcaster'
+                ]
+            ];
+            $result = $this->post('/api/token/request', $params);
+        }
+        else
+            $result = $this->post('/space/channel/' . $this->_slug, $params);
         
         return $this->initChannel($result);
     }
@@ -45,9 +57,22 @@ trait Space
             $params['nickname'] = $id;
         }
         
-        $result = $this->post('/space/channel/' . $this->_slug . '/participant', [
-            'body' => $params
-        ]);
+        if($this->isV1()) {
+            $params = [
+                'body' => [
+                    'email' => $id . '-whitelabel@blastream.com',
+                    'nickname' => $id,
+                    'api_user_id' => $id,
+                    'status' => 'member',
+                    'channel' => $slug
+                ]
+            ];
+            $result = $this->post('/api/token/request', $params);
+        }
+        else
+            $result = $this->post('/space/channel/' . $this->_slug . '/participant', [
+                'body' => $params
+            ]);
         
         return $this->initChannel($result);
     }

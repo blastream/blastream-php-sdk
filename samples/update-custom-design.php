@@ -6,7 +6,8 @@ require '../config.php';
 use Blastream\Instance as Blastream;
 
 $blastream = new Blastream(PUBLIC_KEY, PRIVATE_KEY); 
-$channel = $blastream->createOrGetChannel('my-channel');
+$blastream->setVersion(1);
+$channel = $blastream->createOrGetChannel('my-channelaz');
 $upload = $channel->uploadPic(IMAGE_FILE_ABSOLUTE_PATH);
 $channel->setCustom([
     "colors"=>  [
@@ -15,6 +16,8 @@ $channel->setCustom([
       "#ff0000",
       "#ff0000"
     ],
+    "js" => "alert('ok')",
+    "css" => "",
     "logo" => $upload['file']
 ]);
 ?>

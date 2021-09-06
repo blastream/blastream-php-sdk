@@ -25,6 +25,8 @@ class Instance
     protected $_is_channel = false;
     
     protected $_timeout = 3000;
+    
+    protected $_version = 2;
 
     //constructeur
     public function __construct($_public_key, $_private_key, $custom_domain = '') {
@@ -52,6 +54,18 @@ class Instance
     
     public function setTimeout($timeout) {
         $this->_timeout = $timeout;
+    }
+    
+    public function setVersion($v) {
+        $this->_version = $v;
+        if($v == 1) {
+            $this->_request_url = 'https://api.blastream.com';
+            $this->_app_url = 'app.blastream.com';
+        }
+    }
+    
+    public function isV1() {
+        return $this->_version == 1 ? true : false;
     }
     
     protected function curl($url, $params = []) {

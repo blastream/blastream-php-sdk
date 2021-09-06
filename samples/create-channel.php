@@ -6,6 +6,7 @@ require '../config.php';
 use Blastream\Instance as Blastream;
 
 $blastream = new Blastream(PUBLIC_KEY, PRIVATE_KEY); 
+$blastream->setVersion(1);
 $blastream->setTimeout(6000);
 try {
 $channel = $blastream->createOrGetChannel('my-channelaz');

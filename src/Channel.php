@@ -56,6 +56,12 @@ class Channel extends Instance {
     }
     
     public function setCustom($params = []) {
+        if($this->isV1()) {
+            if(!isset($prams['css']))
+                $prams['css'] = '';
+            if(!isset($prams['js']))
+                $prams['js'] = '';
+        }
         return $this->post('/channel/custom', [
             'body' => [
                 'data' => $params

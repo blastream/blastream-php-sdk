@@ -34,6 +34,8 @@ class Scene {
 trait Scenes {
     
     public function createScene($name, $data) {
+        if($this->isV1())
+            return;
         $data['name'] = $name;
         return new Scene($this->put('/channel/scene', [
             'body' => [
@@ -43,6 +45,8 @@ trait Scenes {
     }
     
     public function getScenes() {
+        if($this->isV1())
+            return [];
         $list = $this->get('/channel/scenes');
         $scenes = [];
         foreach($list['list'] as $scene) {
@@ -52,11 +56,15 @@ trait Scenes {
     }
     
     public function getScene($id) {
+        if($this->isV1())
+            return;
         $scene = $this->get('/channel/scene/' . $id);
         return new Scene($scene, $this);;
     }
     
     public function uploadScenePic($type, $file) {
+        if($this->isV1())
+            return;
         $res = $this->post('/broadcaster/upload/' . $type, [
             'file' => $file,
             'name'=> basename($file)
