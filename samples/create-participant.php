@@ -6,13 +6,12 @@ require '../config.php';
 use Blastream\Instance as Blastream;
 
 $blastream = new Blastream(PUBLIC_KEY, PRIVATE_KEY); 
-$blastream->setVersion(1);
-$channel = $blastream->createOrGetParticipant('my-channelaz', 'my-id33zz', [
-    'allow_cam' => 1
-]);
-$iframe = $channel->getIframe(800, 600, [
-    'username' => 'my username', 
-    'auto_join' => 1
-]);
-echo $iframe;
+try {
+    $channel = $blastream->createOrGetParticipant('my-channel', 'my-part');
+    $iframe = $channel->getIframe(800, 600);
+    echo $iframe;
+}
+catch (Exception $e) {
+    echo 'Exception intercepted : ',  $e->getMessage(), "\n";
+}
 ?>    

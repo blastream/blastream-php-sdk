@@ -38,6 +38,10 @@ class Channel extends Instance {
         return $this->get('/channel/speakers-token');
     }
     
+    public function getReplays() {
+        return $this->get('/channel/videos');
+    }
+    
     public function updateSettings($params) {
         return $this->post('/channel/settings', [
             'body' => [

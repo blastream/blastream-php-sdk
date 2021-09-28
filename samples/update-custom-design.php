@@ -6,18 +6,22 @@ require '../config.php';
 use Blastream\Instance as Blastream;
 
 $blastream = new Blastream(PUBLIC_KEY, PRIVATE_KEY); 
-$blastream->setVersion(1);
-$channel = $blastream->createOrGetChannel('my-channelaz');
-$upload = $channel->uploadPic(IMAGE_FILE_ABSOLUTE_PATH);
-$channel->setCustom([
-    "colors"=>  [
-      "#ff0000",
-      "#ff0000",
-      "#ff0000",
-      "#ff0000"
-    ],
-    "js" => "alert('ok')",
-    "css" => "",
-    "logo" => $upload['file']
-]);
+try {
+  $channel = $blastream->createOrGetChannel('my-channel');
+  $upload = $channel->uploadPic(IMAGE_FILE_ABSOLUTE_PATH);
+  $channel->setCustom([
+      "colors"=>  [
+        "#ff0000",
+        "#ff0000",
+        "#ff0000",
+        "#ff0000"
+      ],
+      "js" => "alert('ok')",
+      "css" => "",
+      "logo" => $upload['file']
+  ]);
+}
+catch (Exception $e) {
+    echo 'Exception intercepted : ',  $e->getMessage(), "\n";
+}
 ?>
