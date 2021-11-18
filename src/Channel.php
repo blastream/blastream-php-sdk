@@ -13,7 +13,9 @@ class Channel extends Instance {
         $this->_slug = $slug;
     }
     
-    public function setAccessRule($privacy, $params = []) {
+    public function setAccessRule($privacy, $params = false) {
+        if($params == false)
+            $params = new \stdClass();
         if($privacy == 'PRIVATE')
             $privacy = 2;
         if($privacy == 'PUBLIC')
