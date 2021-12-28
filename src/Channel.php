@@ -82,5 +82,25 @@ class Channel extends Instance {
     public function disconnectAll() {
         return $this->post('/channel/disconnectall');
     }
+    
+    public function sendMessage($params) {
+        $this->_is_channel = false;
+        $result = $this->post('/api/msg', [
+            'body' => [
+                'msg' => $params['msg'],
+                'username' => $params['username'],
+                'slug' => $this->_slug
+            ]
+        ]);
+        $this->_is_channel = true;
+        return $result;
+    }
+    
+    public function remove() {
+        $this->_is_channel = false;
+        $result = $this->delete('/space/' . $this->_slug);
+        $this->_is_channel = true;
+        return $result;
+    }
 }
 ?>
