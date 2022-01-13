@@ -52,6 +52,14 @@ class Channel extends Instance {
         ]);
     }
     
+    public function updateChatSettings($params) {
+        return $this->post('/chat/settings', [
+            'body' => [
+                'data' => $params
+            ]
+        ]);
+    }
+    
     public function updateSubscription($plan, $billing) {
         return $this->post('/channel/subscription', [
             'body' => [
