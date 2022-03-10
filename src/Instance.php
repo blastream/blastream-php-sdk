@@ -113,7 +113,8 @@ class Instance
         
         curl_setopt($ch, CURLOPT_TIMEOUT_MS, $this->_timeout);
         
-        
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         $result = curl_exec($ch);
