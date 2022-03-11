@@ -86,9 +86,7 @@ class Instance
         if ($params['method'] == 'DELETE') 
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
             
-        if (isset($params['body'])) {
-            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params['body']));
-        }
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params['body'] ?? []));
         
         $headers = array();
         
