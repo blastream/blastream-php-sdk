@@ -8,9 +8,18 @@ class Channel extends Instance {
     use Scenes;
     
     protected $_is_channel = true;
+    protected $_id = 0;
     
     public function setSlug($slug) {
         $this->_slug = $slug;
+    }
+    
+    public function setId($id) {
+        $this->_id = $id;
+    }
+    
+    public function getId() {
+        return $this->_id;
     }
     
     public function setAccessRule($privacy, $params = false) {
