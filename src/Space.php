@@ -10,6 +10,7 @@ trait Space
         $channel->setRequestUrl($this->_request_url);
         $channel->setSlug($this->_slug);
         $channel->setResponseToken($result);
+        $channel->setId($result['id']);
         return $channel;
     }
     
