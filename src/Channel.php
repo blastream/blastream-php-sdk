@@ -133,6 +133,14 @@ class Channel extends Instance {
         return $result;
     }
     
+    public function startLivestreaming() {
+        return $this->post('/channel/livestreaming/start');
+    }
+    
+    public function stopLivestreaming() {
+        return $this->post('/channel/livestreaming/stop');
+    }
+    
     public function startRecord() {
         return $this->post('/channel/startrecord');
     }
