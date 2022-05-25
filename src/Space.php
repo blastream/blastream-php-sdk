@@ -40,9 +40,11 @@ trait Space
             ];
             $result = $this->post('/api/token/request', $params);
         }
-        else
-            $result = $this->post('/space/channel/' . $this->_slug, $params);
-        
+        else {
+            $result = $this->post('/space/channel/' . $this->_slug, [
+                'body' => $params
+            ]);
+        }
         return $this->initChannel($result);
     }
 
