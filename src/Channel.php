@@ -53,6 +53,19 @@ class Channel extends Instance {
         return $this->get('/channel/videos');
     }
     
+    public function getSettings() {
+        return $this->get('/channel/settings');
+    }
+    
+    public function updateAdvancedSettings($params) {
+        $settings = $this->getSettings();
+        foreach($params as $key => $value)
+            $settings['advanced'][$key] = $value;
+        return $this->updateSettings([
+            'advanced' => $settings['advanced']
+        ]);
+    }
+    
     public function updateSettings($params) {
         return $this->post('/channel/settings', [
             'body' => [
