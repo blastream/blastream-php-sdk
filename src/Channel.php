@@ -132,5 +132,13 @@ class Channel extends Instance {
         $this->_is_channel = true;
         return $result;
     }
+    
+    public function startRecord() {
+        return $this->post('/channel/startrecord');
+    }
+    
+    public function stopRecord() {
+        return $this->post('/channel/stoprecord');
+    }
 }
 ?>
