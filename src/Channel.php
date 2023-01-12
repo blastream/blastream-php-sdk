@@ -9,6 +9,7 @@ class Channel extends Instance {
     
     protected $_is_channel = true;
     protected $_id = 0;
+    protected $_apiPrefix = '';
     
     public function setSlug($slug) {
         $this->_slug = $slug;
@@ -147,6 +148,43 @@ class Channel extends Instance {
     
     public function stopRecord() {
         return $this->post('/channel/stoprecord');
+    }
+    
+    public function setApiPrefix($prefix) {
+        $this->_apiPrefix = $prefix;
+    }
+    
+    public function getApiPrefix() {
+        return $this->_apiPrefix;
+    }
+    
+    public function setMode($mode) {
+        if($mode == 'vodToLive') {
+            $settings = $this->getSettings();
+            $settings['advanced']['live_blastream_source'] = 'vod';
+            $settings['advanced']['live_proto'] = 'hls';
+            $this->updateSettings([
+                'advanced' => $settings['advanced'],
+                'autojoin' => 0,
+                'autolivestream' => 1,
+                'allowed_request_cam' => 0
+            ]);
+        }
+        
+    }
+    
+    public function getSession() {
+        return $this->get('/live/session?channel_slug=' . $this->_slug);
+    }
+    
+    public function startSession() {
+        $session = $this->getSession();
+        return $this->get('/videoconf/' . $this->_id . '/session/' . $session['token']);
+    }
+    
+    public function stopSession() {
+        $slugA = explode('_', $this->_slug);
+        return $this->post('/channel/' . $this->_apiPrefix . '_' . $this->_apiPrefix . '_' . $this->_slug . '/stopvisio');
     }
 }
 ?>
