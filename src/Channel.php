@@ -177,9 +177,9 @@ class Channel extends Instance {
         return $this->get('/live/session?channel_slug=' . $this->_slug);
     }
     
-    public function startSession() {
+    public function startSession($params = []) {
         $session = $this->getSession();
-        return $this->get('/videoconf/' . $this->_id . '/session/' . $session['token']);
+        return $this->get('/videoconf/' . $this->_id . '/session/' . $session['token'] . '?' . http_build_query($params));
     }
     
     public function stopSession() {
