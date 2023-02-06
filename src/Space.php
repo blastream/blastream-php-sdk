@@ -82,6 +82,13 @@ trait Space
         return $this->initChannel($result);
     }
     
+    public function cloneChannel($channelSlugSource, $channelSlugTarget, $params = []) {
+        $params['slug'] = $channelSlugTarget;
+        return $this->post('/space/channel/' . $channelSlugSource . '/clone', [
+            'body' => $params
+        ]);
+    }
+    
     private function setResponseToken($res) {
         $this->_token = $res['token'];
         $this->_channel_url = $res['url'];
