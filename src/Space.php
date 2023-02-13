@@ -11,6 +11,7 @@ trait Space
         $channel->setSlug($this->_slug);
         $channel->setResponseToken($result);
         $channel->setId($result['id']);
+        $channel->setJustBeenCreated($result['justBeenCreated']);
         if(isset($result['prefix']))
             $channel->setApiPrefix($result['prefix']);
         return $channel;
