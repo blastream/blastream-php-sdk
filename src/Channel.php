@@ -10,6 +10,7 @@ class Channel extends Instance {
     protected $_is_channel = true;
     protected $_id = 0;
     protected $_apiPrefix = '';
+    protected $_justBeenCreated = false;
     
     public function setSlug($slug) {
         $this->_slug = $slug;
@@ -21,6 +22,14 @@ class Channel extends Instance {
     
     public function getId() {
         return $this->_id;
+    }
+    
+    public function setJustBeenCreated($justBeenCreated) {
+        $this->_justBeenCreated = $justBeenCreated;
+    }
+    
+    public function hasJustBeenCreated() {
+        return $this->_justBeenCreated;
     }
     
     public function setAccessRule($privacy, $params = false) {
