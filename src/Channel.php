@@ -195,5 +195,24 @@ class Channel extends Instance {
         $slugA = explode('_', $this->_slug);
         return $this->post('/channel/' . $this->_apiPrefix . '_' . $this->_apiPrefix . '_' . $this->_slug . '/stopvisio');
     }
+
+    public function createSimulcast($name, $rtmpUrl, $rtmpKey, $params = []) {
+        return $this->put('/simulcast', [
+            'body' => [
+                'name' => $name,
+                'rtmp_url' => $rtmpUrl, 
+                'rtmp_key' => $rtmpKey,
+                'rtmp_username' => isset($params['rtmp_username']) ? $params['rtmp_username'] : '',
+                'rtmp_password' => isset($params['rtmp_password']) ? $params['rtmp_password'] : '',
+                'active' => 1,
+                'chat' => 0,
+                'service' => 'rtmp'
+            ]
+        ]);
+    }
+    
+    public function deleteSimulcast($simulcastId) {
+        return $this->delete('/simulcast/' . $simulcastId);
+    }
 }
 ?>
