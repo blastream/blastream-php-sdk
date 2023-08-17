@@ -214,5 +214,13 @@ class Channel extends Instance {
     public function deleteSimulcast($simulcastId) {
         return $this->delete('/simulcast/' . $simulcastId);
     }
+
+    public function getStatSessions($start = 0, $limit = 25) {
+        return $this->get('/channel/session_stats/?start=' . $start . '&limit=' . $limit);
+    }
+    
+    public function getStatSession($id) {
+        return $this->get('/channel/session_stats/' . $id);
+    }
 }
 ?>
