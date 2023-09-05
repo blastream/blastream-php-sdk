@@ -222,5 +222,9 @@ class Channel extends Instance {
     public function getStatSession($id) {
         return $this->get('/channel/session_stats/' . $id);
     }
+
+    public function publishReplay($replayId) {
+        return $this->post('/video/'.$replayId.'/activate');
+    }
 }
 ?>
