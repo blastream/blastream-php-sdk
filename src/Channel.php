@@ -6,6 +6,7 @@ class Channel extends Instance {
     use Document;
     use Collaborators;
     use Scenes;
+    use Polls;
     
     protected $_is_channel = true;
     protected $_id = 0;
@@ -135,6 +136,7 @@ class Channel extends Instance {
         $this->_is_channel = true;
         return $result;
     }
+    
     
     public function remove() {
         $this->_is_channel = false;
