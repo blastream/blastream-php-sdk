@@ -7,6 +7,7 @@ class Channel extends Instance {
     use Collaborators;
     use Scenes;
     use Polls;
+    use Banners;
     
     protected $_is_channel = true;
     protected $_id = 0;
