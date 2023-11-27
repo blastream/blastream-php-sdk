@@ -116,5 +116,9 @@ trait Space
             ]
         ]);
     }
+    
+    public function getCurrentLiveRooms(){
+        return $this->get('/space/channels');
+    }
 }
 ?>
