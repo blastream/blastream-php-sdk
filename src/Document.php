@@ -14,6 +14,14 @@ trait Document
             'name' => $name
         ]);
     }
+    
+    public function uploadFromUrl($url){
+        return $this->post('/broadcaster/upload-url', [
+            'body' => [            
+                'url' => $url
+            ]
+        ]);
+    }
 
 }
 ?>
