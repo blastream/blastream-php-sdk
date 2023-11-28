@@ -11,6 +11,20 @@ trait Banners {
         ]);
     }
     
+    public function setBannerModule($bool){
+        return $this->post('/channel/modules', [
+            'body' => [
+                'modules' => [
+                    [
+                        'name' => 'banner',
+                        'active' => ($bool == 1 ? 1 : 0)
+                    ]
+                ]
+            ]
+        ]);
+        
+    }
+    
     public function getBanners() {
         return $this->get('/banners');
     }    
