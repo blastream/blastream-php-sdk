@@ -117,12 +117,12 @@ trait Space
         ]);
     }
 
-    public function getRooms(){
+    public function getChannels(){
         $uri = '/space/channels';         
         return $this->get($uri);
     }
     
-    public function getCurrentLiveRooms(){
+    public function getCurrentLiveChannels(){
         $uri = '/space/channels?liveOnly=1';         
         return $this->get($uri);
     }
