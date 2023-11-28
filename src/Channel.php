@@ -182,7 +182,17 @@ class Channel extends Instance {
                 'allowed_request_cam' => 0
             ]);
         }
-        
+        if($mode == 'rtmp') {
+            $settings = $this->getSettings();
+            $settings['advanced']['streaming_kind'] = 'rtmp';
+            $settings['advanced']['live_proto'] = 'hls';
+            $this->updateSettings([
+                'advanced' => $settings['advanced'],
+                'autojoin' => 0,
+                'autolivestream' => 0,
+                'allowed_request_cam' => 0
+            ]);
+        }
     }
     
     public function getSession() {
