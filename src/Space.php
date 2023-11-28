@@ -116,12 +116,14 @@ trait Space
             ]
         ]);
     }
+
+    public function getRooms(){
+        $uri = '/space/channels';         
+        return $this->get($uri);
+    }
     
-    public function getCurrentLiveRooms($onLive = false){
-        $uri = '/space/channels'; 
-        if($onLive == true){
-            $uri .= '?liveOnly=1'; 
-        }
+    public function getCurrentLiveRooms(){
+        $uri = '/space/channels?liveOnly=1';         
         return $this->get($uri);
     }
 }
