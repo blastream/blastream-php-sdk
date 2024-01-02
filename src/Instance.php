@@ -6,7 +6,7 @@ class Instance
     use Space;
     use Plans;
     
-    private $_request_url = 'https://api.v2.blastream.com';
+    protected $_request_url = 'https://api.v2.blastream.com';
     
     private $_app_url = 'app.v2.blastream.com';
 
