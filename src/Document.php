@@ -16,7 +16,7 @@ trait Document
     }
     
     public function uploadFromUrl($url){
-        return $this->post('/broadcaster/upload-url', [
+        return $this->post('/upload-url', [
             'body' => [            
                 'url' => $url
             ]
