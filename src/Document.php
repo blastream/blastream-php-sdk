@@ -28,5 +28,21 @@ trait Document
         return $res;
     }
 
+    public function getFiles(){        
+        return $this->get('/files');
+    }
+
+    public function updateFile($documentId, $name){        
+        return $this->post('/document/' . $documentId, [
+            'body' => [            
+                'name' => $name
+            ],
+        ]);
+    }
+
+    public function removeFile($documentId){        
+        return $this->delete('/document/' . $documentId);
+    }
+
 }
 ?>
