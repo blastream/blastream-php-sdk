@@ -40,6 +40,22 @@ trait Banners {
             ]
         ]);
     }
+	
+    public function showBanner($id) {
+		return $this->post('/banner/'.$id.'/play');
+    }
+    
+    public function hideBanner($id) {
+		return $this->post('/banner/'.$id.'/stop');
+    }
+    
+    public function updateBannerQuantity($id, $qty) {
+		return $this->post('/banner/'.$id.'/update_qty', [
+            'body' => [
+                'new_qty' => $qty
+            ]
+        ]);
+    }
 
     public function getBannerLogs() {
 		return $this->get('/banner/logs');
