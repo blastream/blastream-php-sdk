@@ -154,6 +154,14 @@ class Channel extends Instance {
         return $this->post('/channel/livestreaming/stop');
     }
     
+    public function startInitializeLivestreaming() {
+        return $this->post('/channel/livestreaming/initialize');
+    }
+    
+    public function stopInitializeLivestreaming() {
+        return $this->post('/channel/livestreaming/uninitialize');
+    }
+    
     public function startRecord() {
         return $this->post('/channel/startrecord');
     }
@@ -238,6 +246,42 @@ class Channel extends Instance {
 
     public function publishReplay($replayId) {
         return $this->post('/video/'.$replayId.'/activate');
+    }
+
+    public function getEvergreens() {
+        return $this->get('/evergreens');
+    }
+    
+    public function updateEvergreen(
+            $id,
+            $minute,
+            $hour,
+            $day_of_month,
+            $month,
+            $day_of_week) {
+        return $this->post('/evergreen/' . $id, [
+            'body' => [
+                'minute' => $minute,
+                'hour' => $hour,
+                'day_of_month' => $day_of_month,
+                'month' => $month,
+                'day_of_week' => $day_of_week
+            ]
+        ]);
+    }
+    
+    public function getEvergreenItems($evergreenId) {
+        return $this->get('/evergreen/'.$evergreenId.'/items');
+    }
+    
+    public function updateEvergreenItem($itemId, $body) {
+        return $this->post('/evergreen/item/'.$itemId, [
+            'body' => $body
+        ]);
+    }
+    
+    public function clearChat() {
+        return $this->post('/discussion/0/clear');
     }
 }
 ?>
