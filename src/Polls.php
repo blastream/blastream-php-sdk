@@ -4,6 +4,10 @@ namespace Blastream;
 trait Polls {
     
     public function createPool($params) {
+        return $this->createPoll($params);
+    }
+
+    public function createPoll($params) {
         return $this->post('/poll', [
             'body' => [
                 'discussion_id' => 0,
