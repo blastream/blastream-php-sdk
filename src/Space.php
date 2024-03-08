@@ -126,5 +126,29 @@ trait Space
         $uri = '/space/channels?liveOnly=1';         
         return $this->get($uri);
     }
+
+    public function createEvergreen($channelSlugSource, $channelSlugTarget, $recordingId, 
+            $minute,
+            $hour,
+            $day_of_month,
+            $month,
+            $day_of_week
+        ) {
+        return $this->post('/space/channel/' . $channelSlugSource . '/evergreen/' . $recordingId, [
+            'body' => [
+                'minute' => $minute,
+                'hour' => $hour,
+                'day_of_month' => $day_of_month,
+                'month' => $month,
+                'day_of_week' => $day_of_week,
+                'slug' => $channelSlugTarget
+            ]
+        ]);
+    }
+    
+    //just for test
+    public function launchEvergreen($schId) {
+        return $this->post('/space/evergreen/launch/' . $schId);
+    }
 }
 ?>
