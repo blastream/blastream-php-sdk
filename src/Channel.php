@@ -279,6 +279,20 @@ class Channel extends Instance {
             'body' => $body
         ]);
     }
+
+    public function addEvergreenItem($evergreenId, $body) {
+        return $this->put('/evergreen/'.$evergreenId.'/item', [
+            'body' => $body
+        ]);
+    }
+    
+    public function deleteEvergreen($id) {
+        return $this->delete('/evergreen/'.$id);
+    }
+    
+    public function deleteEvergreenItem($itemId) {
+        return $this->delete('/evergreen/item/'.$itemId);
+    }
     
     public function clearChat() {
         return $this->post('/discussion/0/clear');
