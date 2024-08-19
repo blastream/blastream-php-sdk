@@ -64,6 +64,10 @@ class Channel extends Instance {
     public function getReplays() {
         return $this->get('/channel/videos');
     }
+
+    public function deleteReplay($id){
+        return $this->delete('/video/'.$id);
+    }    
     
     public function getSettings() {
         return $this->get('/channel/settings');
