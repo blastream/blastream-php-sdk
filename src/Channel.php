@@ -301,5 +301,9 @@ class Channel extends Instance {
     public function clearChat() {
         return $this->post('/discussion/0/clear');
     }
+
+    public function getCustom() {
+         return $this->get('/channel/static/' . $this->_slug . '/custom');
+    }
 }
 ?>
