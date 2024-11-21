@@ -303,7 +303,7 @@ class Channel extends Instance {
     }
 
     public function getCustom() {
-         return $this->get('/channel/static/' . $this->_slug . '/custom');
+        return $this->get('/channel/static/' . $this->_apiPrefix.'_'.$this->_slug . '/custom');
     }
 }
 ?>
