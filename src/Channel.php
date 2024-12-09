@@ -251,6 +251,10 @@ class Channel extends Instance {
     public function publishReplay($replayId) {
         return $this->post('/video/'.$replayId.'/activate');
     }
+    
+    public function unpublishReplay($replayId) {
+        return $this->post('/video/'.$replayId.'/disable');
+    }
 
     public function getEvergreens() {
         return $this->get('/evergreens');
@@ -305,5 +309,9 @@ class Channel extends Instance {
     public function getCustom() {
         return $this->get('/channel/static/' . $this->_apiPrefix.'_'.$this->_slug . '/custom');
     }
+
+    public function getChatHistory() {
+        return $this->get('/messages/history');
+    } 
 }
 ?>
