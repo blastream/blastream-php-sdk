@@ -61,8 +61,9 @@ class Channel extends Instance {
         return $this->get('/channel/speakers-token');
     }
     
-    public function getReplays() {
-        return $this->get('/channel/videos');
+    public function getReplays($params = []) {
+        $uri = '/channel/videos?'.http_build_query($params);
+        return $this->get($uri);
     }
 
     public function deleteReplay($id){
